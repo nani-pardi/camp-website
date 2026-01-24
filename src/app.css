@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
 /* ---------- Minimal modern reset ---------- */
 *,
 *::before,
@@ -36,23 +38,34 @@ a {
 
 /* ---------- Theme ---------- */
 :root {
-  --blue: #1b2b6b; /* camp blue (ribbon) */
-  --red: #c31333; /* camp red */
-  --ink: #0f172a; /* slate-900ish */
-  --muted: #64748b; /* slate-500ish */
+  /* French flag (vibrant) */
+  --blue: #0055a4;
+  --red: #ef4135;
+  --white: #ffffff;
+
+  --ink: #0f172a;
+  --muted: #64748b;
   --paper: #ffffff;
   --wash: #f7f9fc;
 
   --radius: 22px;
   --shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.1);
+
+  /* Ombré accents */
+  --ombre: linear-gradient(90deg, rgba(0, 85, 164, 0.98), rgba(255, 255, 255, 0.95), rgba(239, 65, 53, 0.98));
+  --ombre-soft: linear-gradient(135deg, rgba(0, 85, 164, 0.18), rgba(255, 255, 255, 0.55), rgba(239, 65, 53, 0.18));
+
+  /* Focus ring */
+  --ring: rgba(0, 85, 164, 0.28);
 }
 
-@font-face {
+/* @font-face {
   font-family: Inter;
   src: local('Inter');
   font-display: swap;
 }
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap'); */
 
 body {
   font-family:
@@ -101,18 +114,49 @@ h3,
 }
 
 /* ---------- Header ---------- */
-.site-topbar {
-  height: 4px;
-  background: var(--red);
+.header-title { 
+  font-family: 'Great Vibes', cursive !important; 
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.05;
+  letter-spacing: 0.3px;
+  color: #fff;
 }
+@media (min-width: 900px) {
+  .header-title {
+    font-size: 2rem;
+  }
+}
+
+
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: saturate(180%) blur(10px);
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--red);
+  color: #fff;
+  border-bottom: none;
+  backdrop-filter: none;
 }
+
+.site-header .nav a {
+  color: #fff;
+}
+.site-header .nav a:hover {
+  text-decoration: underline;
+}
+
+.site-header .brand div:last-child {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.site-header .burger {
+  background: #fff;
+  color: var(--red);
+  border: none;
+}
+
 .navbar {
   height: 64px;
   display: flex;
@@ -287,9 +331,25 @@ h3,
 }
 .footer {
   margin-top: 4rem;
-  border-top: 1px solid #e5e7eb;
-  background: #fff;
+  background: var(--blue);
+  color: #fff;
+  border-top: none;
 }
+
+.footer p,
+.footer li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer .display {
+  color: #fff;
+}
+
+.footer a {
+  color: #fff;
+}
+
+/* Footer layout stays the same */
 .footer-inner {
   display: grid;
   gap: 2rem;
@@ -300,10 +360,12 @@ h3,
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+/* Footer bottom bar */
 .smallprint {
-  background: #f8fafc;
+  background: rgba(0, 0, 0, 0.18);
   text-align: center;
   font-size: 0.75rem;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.85);
   padding: 1rem;
 }

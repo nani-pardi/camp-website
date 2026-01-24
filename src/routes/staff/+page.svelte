@@ -4,27 +4,13 @@
       name: 'Pascale Burns',
       role: 'Camp Director',
       blurb:
-        'Camp Founder and Director.',
+        'Insert Blurb.',
       photo: '/images/staff/sarah.jpg'
     },
-    {
-      name: 'Tom Lee',
-      role: 'Activities Coordinator',
-      blurb:
-        'Designs our science, sports, and game-show blocks—keeping every day fresh and active.',
-      photo: '/images/staff/tom.jpg'
-    },
-    {
-      name: 'Maria Gomez',
-      role: 'Counselor',
-      blurb:
-        'Brings warmth, creativity, and music to the classroom so all levels feel confident.',
-      photo: '/images/staff/maria.jpg'
-    }
   ]
 </script>
 
-<h2 class="staff-title">Meet Our Staff</h2>
+<h2 class="staff-title">Letter From the Director</h2>
 
 <section class="staff-grid">
   {#each staff as m}

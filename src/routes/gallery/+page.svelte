@@ -6,6 +6,8 @@
     '/images/camp4.jpg',
     '/images/camp5.jpg',
     '/images/camp6.jpg',
+    '/images/camp7.jpg',
+    '/images/camp8.jpg',
   ]
 </script>
 

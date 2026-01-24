@@ -16,10 +16,10 @@
           />
 
         <div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.25rem">
-            Alouette French Camp
+          <div class="header-title">
+            Alouette French Language Camp
           </div>
-          <div style="font-size:.7rem;color:#64748b">Summer language adventures</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.85)">Expand your mind this summer!</div>
         </div>
       </a>
 
@@ -33,34 +33,6 @@
       </nav>
 
       <a href="/register" class="btn btn-primary cta">Register Now</a>
-
-      <button class="burger" aria-label="Toggle menu" on:click={() => (open = !open)}>
-        <svg
-          width="22"
-          height="22"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16" /></svg
-        >
-      </button>
-    </div>
-
-    <div class:open={open} class="menu">
-      <div class="container stack" style="padding:12px 0">
-        <a href="/" on:click={() => (open = false)}>Home</a>
-        <a href="/staff" on:click={() => (open = false)}>Staff</a>
-        <a href="/register" on:click={() => (open = false)}>Register</a>
-        <a href="/jobs" on:click={() => (open = false)}>Jobs</a>
-        <a href="/reviews" on:click={() => (open = false)}>Reviews</a>
-        <a href="/gallery" on:click={() => (open = false)}>Gallery</a>
-        <a
-          href="/register"
-          on:click={() => (open = false)}
-          class="btn btn-primary"
-          style="justify-content:center">Register Now</a
-        >
-      </div>
     </div>
   </header>
 
@@ -71,9 +43,9 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div>
-        <div class="display" style="font-size:1.15rem">Alouette French Camp</div>
-        <p style="color:#64748b;font-size:.95rem;margin-top:.35rem">
-          Language learning has never been so fun!
+        <div class="display" style="font-size:1.15rem">Alouette French Language Camp</div>
+        <p style="color:#ffffff;font-size:.95rem;margin-top:.35rem">
+          Expand your mind this summer!
         </p>
       </div>
       <div>
