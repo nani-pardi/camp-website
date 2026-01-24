@@ -80,7 +80,7 @@
 
     <div class="card">
       <h3 class="display" style="font-size:1.25rem">Two Weeks</h3>
-      <p>Both sessions: July 20-24–18 & July 27-31</p>
+      <p>Both sessions: July 20-24 & July 27-31</p>
       <p style="font-size:.9rem;color:#64748b">9:30–3:00 PM</p>
       <div style="font-weight:800;margin-top:.5rem">$800</div>
     </div>
@@ -184,13 +184,21 @@
 
   <div class="card">
     <p style="color:#334155;margin-top:.85rem">
-      My boys absolutely love Camp Alouette. Every summer, it’s the number-one camp they ask to
-      attend. From delicious food to friendly competition, Camp Alouette truly knows how to capture
-      their hearts—while helping them learn the French language in a fun, engaging, and immersive
-      environment.
+    My boys love Camp Alouette, every summer it’s their number 1 requested camp to attend. This camp knows the way to my boys hearts, from delicious food to competitive games my boys manage to learn the French language in a fun and engaging environment.
     </p>
   </div>
 </section>
 
 
 <section id="gallery" class="section"><h2>Gallery</h2></section>
+  <p class="lead">A peek at the joy, creativity, and fun.</p>
+  <div class="gallery-preview">
+    <img src="/images/camp1.jpg" alt="Camp activity" />
+    <img src="/images/camp5.jpg" alt="Camp activity" />
+    <img src="/images/camp7.jpg" alt="Camp activity" />
+    <img src="/images/camp6.jpg" alt="Camp activity" />
+  </div>
+
+  <div style="text-align:center;margin-top:1.25rem">
+    <a href="/gallery" class="btn btn-primary">View Full Gallery</a>
+  </div>
