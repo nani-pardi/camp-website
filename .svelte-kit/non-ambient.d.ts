@@ -41,6 +41,6 @@ declare module "$app/types" {
 		};
 		Pathname(): "/" | "/gallery" | "/gallery/" | "/jobs" | "/jobs/" | "/register" | "/register/" | "/reviews" | "/reviews/" | "/staff" | "/staff/";
 		ResolvedPathname(): `${"" | `/${string}`}${ReturnType<AppTypes['Pathname']>}`;
-		Asset(): "/images/camp1.JPG" | "/images/camp2.JPG" | "/images/camp3.JPG" | "/images/camp4.JPG" | "/images/camp5.JPG" | "/images/camp6.JPEG" | "/images/camp7.jpeg" | "/images/camp8.jpeg" | "/images/camplogo.JPG" | "/images/director.jpg" | "/robots.txt" | string & {};
+		Asset(): "/images/camp1.jpg" | "/images/camp2.jpg" | "/images/camp3.jpg" | "/images/camp4.jpg" | "/images/camp5.jpg" | "/images/camp6.jpg" | "/images/camp7.jpg" | "/images/camp8.jpg" | "/images/camplogo.JPG" | "/images/director.jpg" | "/robots.txt" | string & {};
 	}
 }
