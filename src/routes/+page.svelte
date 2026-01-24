@@ -133,9 +133,7 @@
 
 <section id="jobs" class="section">
   <h2>Job Opportunities</h2>
-  <p class="lead">
-    Join our team and help create a joyful, immersive French camp experience.
-  </p>
+  <p class="lead">Join our team and help create a joyful, immersive French camp experience.</p>
 
   <div class="grid-3 section">
     <!-- Junior Counselor -->
@@ -171,7 +169,6 @@
       </p>
     </section>
   </div>
-
   <div style="text-align:center;margin-top:1.25rem">
     <a class="btn btn-primary" href="/jobs">Apply Now</a>
   </div>
@@ -190,7 +187,8 @@
 </section>
 
 
-<section id="gallery" class="section"><h2>Gallery</h2></section>
+<section id="gallery" class="section">
+  <h2>Gallery</h2>
   <p class="lead">A peek at the joy, creativity, and fun.</p>
   <div class="gallery-preview">
     <img src="/images/camp1.jpg" alt="Camp activity" />
@@ -202,3 +200,4 @@
   <div style="text-align:center;margin-top:1.25rem">
     <a href="/gallery" class="btn btn-primary">View Full Gallery</a>
   </div>
+</section>
