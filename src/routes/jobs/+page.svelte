@@ -8,9 +8,11 @@
   let week = ''
   let experience = ''
   let position = ''
+
   let submitting = false
-  let success = ''
+  let result = null // { ok: boolean, error?: string }
   let showModal = false
+  let submittedEmail = ''
 
   const WEEKS = [
     { value: '1', label: 'Week 1 (July 14–18)' },
@@ -35,47 +37,62 @@
   $: ageHelp = position ? AGE_RULES[position].label : ''
 
   async function handleSubmit() {
-    if (!name || !email || !age  || !why || !recommender || !week || !position) {
+    result = null
+
+    // Required fields (match Apps Script + /api/jobs)
+    if (!name || !email || !age || !grade || !why || !recommender || !week || !position) {
       alert('Please complete all required fields.')
       return
     }
 
     const nAge = Number(age)
     const rule = AGE_RULES[position]
-
-    if (nAge < rule.min || nAge > rule.max) {
+    if (Number.isNaN(nAge) || nAge < rule.min || nAge > rule.max) {
       alert(`For this position, applicants must be ${rule.label}.`)
       return
     }
 
     submitting = true
-
-    const fd = new FormData()
-    fd.set('name', name)
-    fd.set('email', email)
-    fd.set('age', age)
-    fd.set('grade', grade)
-    fd.set('why', why)
-    fd.set('recommender', recommender)
-    fd.set('week', week)
-    fd.set('position', position)
-    fd.set('experience', experience)
-
     try {
       const res = await fetch('/api/jobs', {
         method: 'POST',
-        body: fd
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          age: String(age),
+          grade,
+          why,
+          recommender,
+          week,
+          position,
+          experience
+        })
       })
 
       const data = await res.json()
-      if (!data.ok) throw new Error(data.error)
+      result = data
 
+      if (!data?.ok) {
+        throw new Error(data?.error || 'Submission failed.')
+      }
+
+      submittedEmail = email
       showModal = true
-      success = 'Application submitted!'
-      name = email = age = grade = why = recommender = week = experience = position = ''
+
+      // Clear form after success
+      name = ''
+      email = ''
+      age = ''
+      grade = ''
+      why = ''
+      recommender = ''
+      week = ''
+      experience = ''
+      position = ''
     } catch (err) {
-      alert('There was a problem submitting your application.')
       console.error(err)
+      result = { ok: false, error: err?.message || 'There was a problem submitting your application.' }
     } finally {
       submitting = false
     }
@@ -88,27 +105,28 @@
 
 <h2 class="jobs-title">Job Opportunities</h2>
 
-<!-- Info cards unchanged -->
 <div class="jobs-grid">
   <section class="info-card">
     <h3 class="info-head">Junior Monitrice / Moniteur (ages 14–16)</h3>
     <p class="info-text">
-        Build leadership and teamwork skills while assisting counselors and working with younger
-        campers in a fun, supportive environment. $250 stipend per week.
+      Build leadership and teamwork skills while assisting counselors and working with younger campers
+      in a fun, supportive environment. $250 stipend per week.
     </p>
   </section>
+
   <section class="info-card">
     <h3 class="info-head">Monitrice / Moniteur (17+)</h3>
     <p class="info-text">
-        Join our staff team and help lead activities, games, and daily camp programming while
-        creating an unforgettable experience for campers.
+      Join our staff team and help lead activities, games, and daily camp programming while creating an
+      unforgettable experience for campers.
     </p>
   </section>
+
   <section class="info-card">
     <h3 class="info-head">Camp Photographer</h3>
     <p class="info-text">
-        Capture the fun! Photograph daily activities and special events to help families see camp
-        life through their child’s eyes.
+      Capture the fun! Photograph daily activities and special events to help families see camp life
+      through their child’s eyes.
     </p>
   </section>
 </div>
@@ -130,25 +148,38 @@
       bind:value={email}
       required
       placeholder="you@example.com"
+      autocomplete="email"
     />
   </div>
 
   <div class="row">
     <div class="field">
       <label class="label" for="age">Age</label>
-      <input id="age" class="input" type="number" min="14" max="99" bind:value={age} required />
+      <input
+        id="age"
+        class="input"
+        type="number"
+        min={ageMin}
+        max={ageMax}
+        bind:value={age}
+        required
+        placeholder="e.g., 17"
+      />
+      {#if ageHelp}
+        <div class="hint">{ageHelp}</div>
+      {/if}
     </div>
+
     <div class="field">
       <label class="label" for="grade">Grade</label>
       <input id="grade" class="input" bind:value={grade} required placeholder="e.g., 10th" />
     </div>
   </div>
 
-    <!-- Position -->
   <div class="field">
     <label class="label" for="position">Position Applying For</label>
     <select id="position" class="input" bind:value={position} required>
-      <option value="" disabled selected>Select a position</option>
+      <option value="" disabled>Select a position</option>
       {#each POSITIONS as p}
         <option value={p.value}>{p.label}</option>
       {/each}
@@ -158,7 +189,7 @@
   <div class="field">
     <label class="label" for="week">Which week(s) are you applying for?</label>
     <select id="week" class="input" bind:value={week} required>
-      <option value="" disabled selected>Select an option</option>
+      <option value="" disabled>Select an option</option>
       {#each WEEKS as w}
         <option value={w.value}>{w.label}</option>
       {/each}
@@ -169,7 +200,7 @@
     <label class="label" for="why">Why do you want to be a counselor?</label>
     <textarea
       id="why"
-      class="input"
+      class="input textarea"
       rows="4"
       bind:value={why}
       required
@@ -192,7 +223,7 @@
     <label class="label" for="experience">Past experience (optional)</label>
     <textarea
       id="experience"
-      class="input"
+      class="input textarea"
       rows="3"
       bind:value={experience}
       placeholder="Any prior camps, tutoring, childcare, or leadership experience"
@@ -203,22 +234,30 @@
     {submitting ? 'Submitting…' : 'Submit Application'}
   </button>
 
-  {#if success}
-    <div class="success" role="status" aria-live="polite">{success}</div>
+  {#if result}
+    {#if result.ok}
+      <div class="success" role="status" aria-live="polite">✅ Application submitted successfully!</div>
+    {:else}
+      <div class="notice error" role="alert">
+        <div class="notice-title">❌ Submission Problem</div>
+        <p class="notice-text">{result.error || 'Please try again.'}</p>
+      </div>
+    {/if}
   {/if}
 </form>
 
-<!-- Success modal -->
 {#if showModal}
   <div class="modal-backdrop" on:click={closeModal} />
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="thanks-title">
-    <h4 id="thanks-title" class="modal-title">Thanks for applying!</h4>
-    <p class="modal-text">
-      We’ve received your application and will contact you at <strong>{email}</strong>.
-    </p>
-    <div class="modal-actions">
-      <button class="btn-primary" on:click={closeModal}>Close</button>
-      <a class="btn-link" href="/">Back to Home</a>
+    <div class="modal-card">
+      <h4 id="thanks-title" class="modal-title">Thanks for applying!</h4>
+      <p class="modal-text">
+        We’ve received your application and will contact you at <strong>{submittedEmail}</strong>.
+      </p>
+      <div class="modal-actions">
+        <button class="btn-primary" type="button" on:click={closeModal}>Close</button>
+        <a class="btn-link" href="/">Back to Home</a>
+      </div>
     </div>
   </div>
 {/if}
@@ -237,24 +276,36 @@
     margin: 0 auto 1.5rem auto;
     display: grid;
     gap: 1rem;
+    padding: 0 1rem;
   }
-  @media (min-width: 840px) { .jobs-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 840px) {
+    .jobs-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 
   .info-card {
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 18px;
     padding: 1.25rem;
-    box-shadow: 0 1px 1px rgba(15,23,42,.04), 0 8px 18px rgba(15,23,42,.10);
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.1);
   }
-  .info-head { color: #c31333; font-weight: 800; margin: 0 0 .35rem 0; }
-  .info-text { color: #334155; }
+  .info-head {
+    color: #c31333;
+    font-weight: 800;
+    margin: 0 0 0.35rem 0;
+  }
+  .info-text {
+    color: #334155;
+    margin: 0;
+  }
 
   .apply-title {
     text-align: center;
     font-weight: 900;
     color: #0f172a;
-    margin: 1.5rem 0 .75rem 0;
+    margin: 1.5rem 0 0.75rem 0;
   }
 
   .form-card {
@@ -264,69 +315,163 @@
     border: 1px solid #e5e7eb;
     border-radius: 18px;
     padding: 1.75rem;
-    box-shadow: 0 1px 1px rgba(15,23,42,.04), 0 8px 18px rgba(15,23,42,.10);
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.1);
     display: grid;
     gap: 1rem;
   }
-  .row { display: grid; gap: 1rem; }
-  @media (min-width: 640px) { .row { grid-template-columns: 1fr 1fr; } }
 
-  .field { display: grid; gap: .35rem; }
-  .label { font-weight: 700; color: #334155; }
+  .row {
+    display: grid;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .field {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .label {
+    font-weight: 700;
+    color: #334155;
+  }
   .input {
     width: 100%;
-    padding: .75rem .9rem;
+    padding: 0.75rem 0.9rem;
     border-radius: 12px;
     border: 1px solid #cbd5e1;
     outline: none;
     background: #fff;
   }
-  .input:focus { border-color: #1b2b6b; box-shadow: 0 0 0 3px rgba(27,43,107,.15); }
+  .input:focus {
+    border-color: #1b2b6b;
+    box-shadow: 0 0 0 3px rgba(27, 43, 107, 0.15);
+  }
+
+  .textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .hint {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-top: 0.15rem;
+  }
 
   .btn-submit {
     width: 100%;
-    padding: .9rem 1rem;
+    padding: 0.9rem 1rem;
     border: 0;
     border-radius: 14px;
     font-weight: 800;
     color: #fff;
     background: #ff0000;
     cursor: pointer;
-    box-shadow: 0 1px 1px rgba(15,23,42,.04), 0 8px 18px rgba(15,23,42,.10);
-    transition: transform .15s ease, background .2s ease, color .2s ease, opacity .2s ease;
+    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.1);
+    transition: transform 0.15s ease, opacity 0.2s ease;
   }
-  .btn-submit:hover { transform: translateY(-1px); }
-  .btn-submit:disabled { opacity: .7; transform: none; cursor: not-allowed; }
+  .btn-submit:hover {
+    transform: translateY(-1px);
+  }
+  .btn-submit:disabled {
+    opacity: 0.7;
+    transform: none;
+    cursor: not-allowed;
+  }
 
   .success {
-    margin-top: .6rem;
+    margin-top: 0.6rem;
     color: #155e75;
     background: #ecfeff;
     border: 1px solid #a5f3fc;
     border-radius: 12px;
-    padding: .75rem .9rem;
-    font-weight: 600;
+    padding: 0.75rem 0.9rem;
+    font-weight: 700;
   }
 
-  /* Modal */
+  .notice {
+    margin-top: 0.6rem;
+    border-radius: 12px;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(248, 250, 252, 0.7);
+  }
+  .notice-title {
+    font-weight: 900;
+    margin-bottom: 0.35rem;
+  }
+  .notice-text {
+    color: #0f172a;
+    margin: 0;
+  }
+  .notice.error {
+    border-color: rgba(255, 0, 0, 0.4);
+    background: rgba(239, 68, 68, 0.06);
+  }
+
   .modal-backdrop {
-    position: fixed; inset: 0; background: rgba(15,23,42,.45);
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
     backdrop-filter: blur(2px);
   }
+
   .modal {
-    position: fixed; inset: 0; display: grid; place-items: center; padding: 1rem;
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
   }
-  .modal > * {
-    background: #fff; border: 1px solid #e5e7eb; border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(15,23,42,.25); max-width: 520px; width: 100%;
-    padding: 1.25rem 1.25rem;
+
+  .modal-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+    max-width: 520px;
+    width: 100%;
+    padding: 1.25rem;
   }
-  .modal-title { font-size: 1.15rem; margin: 0 0 .35rem 0; font-weight: 900; color: #0f172a; }
-  .modal-text { color: #334155; margin: 0 0 .9rem 0; }
-  .modal-actions { display: flex; gap: .5rem; justify-content: flex-end; }
+
+  .modal-title {
+    font-size: 1.15rem;
+    margin: 0 0 0.35rem 0;
+    font-weight: 900;
+    color: #0f172a;
+  }
+
+  .modal-text {
+    color: #334155;
+    margin: 0 0 0.9rem 0;
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   .btn-primary {
-    appearance: none; border: 0; border-radius: 12px; padding: .6rem .9rem;
-    background: #1b2b6b; color: #fff; font-weight: 800; cursor: pointer;
+    appearance: none;
+    border: 0;
+    border-radius: 12px;
+    padding: 0.6rem 0.9rem;
+    background: #1b2b6b;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
   }
-  .btn-link { color: #1b2b6b; text-decoration: none; font-weight: 800; padding: .6rem .5rem; }
+
+  .btn-link {
+    color: #1b2b6b;
+    text-decoration: none;
+    font-weight: 800;
+    padding: 0.6rem 0.5rem;
+  }
 </style>
