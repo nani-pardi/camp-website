@@ -100,7 +100,6 @@
         <option value="week1">One Week (Week 1: July 14–18)</option>
         <option value="both">Both Weeks (July 14–18 & July 21–25)</option>
       </select>
-      <p class="hint">Week 2-only registration is not available.</p>
     </div>
 
     <div class="field">
