@@ -1,5 +1,4 @@
 <script>
-  // --- form state ---
   let name = ''
   let email = ''
   let age = ''
@@ -8,13 +7,10 @@
   let recommender = ''
   let week = ''
   let experience = ''
+  let position = ''
   let submitting = false
-
   let success = ''
   let showModal = false
-
-  const GOOGLE_SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbzVm1DSqe84C8Az_HDcdMbo_qZOM1wqqn3gQbCaBcHS7zoPaXF4j59Ay4viDv7H9Jns/exec'
 
   const WEEKS = [
     { value: '1', label: 'Week 1 (July 14–18)' },
@@ -22,50 +18,64 @@
     { value: 'both', label: 'Both weeks' }
   ]
 
-  function clearForm() {
-    name = ''
-    email = ''
-    age = ''
-    grade = ''
-    why = ''
-    recommender = ''
-    week = ''
-    experience = ''
+  const POSITIONS = [
+    { value: 'junior', label: 'Junior Monitrice / Moniteur (ages 14–16)' },
+    { value: 'counselor', label: 'Monitrice / Moniteur (17+)' },
+    { value: 'photographer', label: 'Camp Photographer (14+)' }
+  ]
+
+  const AGE_RULES = {
+    junior: { min: 14, max: 16, label: 'Ages 14–16' },
+    counselor: { min: 17, max: 99, label: 'Ages 17+' },
+    photographer: { min: 14, max: 99, label: 'Ages 14+' }
   }
 
+  $: ageMin = position ? AGE_RULES[position].min : 14
+  $: ageMax = position ? AGE_RULES[position].max : 99
+  $: ageHelp = position ? AGE_RULES[position].label : ''
+
   async function handleSubmit() {
-    if (!name || !email || !age || !grade || !why || !recommender || !week) {
+    if (!name || !email || !age  || !why || !recommender || !week || !position) {
       alert('Please complete all required fields.')
       return
     }
 
+    const nAge = Number(age)
+    const rule = AGE_RULES[position]
+
+    if (nAge < rule.min || nAge > rule.max) {
+      alert(`For this position, applicants must be ${rule.label}.`)
+      return
+    }
+
     submitting = true
-    success = ''
 
     const fd = new FormData()
     fd.set('name', name)
     fd.set('email', email)
-    fd.set('age', String(age))
+    fd.set('age', age)
     fd.set('grade', grade)
     fd.set('why', why)
     fd.set('recommender', recommender)
     fd.set('week', week)
+    fd.set('position', position)
     fd.set('experience', experience)
 
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
+      const res = await fetch('/api/jobs', {
         method: 'POST',
-        mode: 'no-cors',
         body: fd
       })
 
-      success = 'Thanks! Your application has been submitted.'
-      clearForm()
-      scrollTo({ top: 0, behavior: 'smooth' })
+      const data = await res.json()
+      if (!data.ok) throw new Error(data.error)
+
       showModal = true
+      success = 'Application submitted!'
+      name = email = age = grade = why = recommender = week = experience = position = ''
     } catch (err) {
+      alert('There was a problem submitting your application.')
       console.error(err)
-      alert('There was a problem submitting your application. Please try again.')
     } finally {
       submitting = false
     }
@@ -74,35 +84,31 @@
   function closeModal() {
     showModal = false
   }
-
-  function onKeydown(e) {
-    if (e.key === 'Escape') closeModal()
-  }
 </script>
-
-<svelte:window on:keydown={onKeydown} />
 
 <h2 class="jobs-title">Job Opportunities</h2>
 
 <!-- Info cards unchanged -->
 <div class="jobs-grid">
   <section class="info-card">
-    <h3 class="info-head">Counselor Training (ages 14–16)</h3>
+    <h3 class="info-head">Junior Monitrice / Moniteur (ages 14–16)</h3>
     <p class="info-text">
-      $250 per week. Learn leadership, teamwork, and teaching skills while assisting with younger
-      campers.
+        Build leadership and teamwork skills while assisting counselors and working with younger
+        campers in a fun, supportive environment. $250 stipend per week.
     </p>
   </section>
   <section class="info-card">
-    <h3 class="info-head">Paid Counselors (17+)</h3>
+    <h3 class="info-head">Monitrice / Moniteur (17+)</h3>
     <p class="info-text">
-      Join our staff team and get paid while helping create an unforgettable camp experience.
+        Join our staff team and help lead activities, games, and daily camp programming while
+        creating an unforgettable experience for campers.
     </p>
   </section>
   <section class="info-card">
-    <h3 class="info-head">Enrollment Limits</h3>
+    <h3 class="info-head">Camp Photographer</h3>
     <p class="info-text">
-      First 30 campers only — so staff roles are limited as well. Apply early to secure your spot!
+        Capture the fun! Photograph daily activities and special events to help families see camp
+        life through their child’s eyes.
     </p>
   </section>
 </div>
@@ -138,8 +144,19 @@
     </div>
   </div>
 
+    <!-- Position -->
   <div class="field">
-    <label class="label" for="week">Which week(s) do you want to work?</label>
+    <label class="label" for="position">Position Applying For</label>
+    <select id="position" class="input" bind:value={position} required>
+      <option value="" disabled selected>Select a position</option>
+      {#each POSITIONS as p}
+        <option value={p.value}>{p.label}</option>
+      {/each}
+    </select>
+  </div>
+
+  <div class="field">
+    <label class="label" for="week">Which week(s) are you applying for?</label>
     <select id="week" class="input" bind:value={week} required>
       <option value="" disabled selected>Select an option</option>
       {#each WEEKS as w}
@@ -273,7 +290,7 @@
     border-radius: 14px;
     font-weight: 800;
     color: #fff;
-    background: #c31333;
+    background: #ff0000;
     cursor: pointer;
     box-shadow: 0 1px 1px rgba(15,23,42,.04), 0 8px 18px rgba(15,23,42,.10);
     transition: transform .15s ease, background .2s ease, color .2s ease, opacity .2s ease;

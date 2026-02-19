@@ -2,7 +2,7 @@
 <section class="hero hero-bg">
   <div class="container wrap">
     <div>
-      <h1>Alouette French Camp Expand your mind this summer!</h1>
+      <h1> Bonjour et Bienvenue à Alouette French Camp!</h1>
       <p>
         Did you know that even some minor exposure to a foreign language makes you smarter? It's true!
         Language learning enhances critical thinking skills, problem-solving abilities, and memory retention, positively impacting academic achievement.
@@ -40,13 +40,11 @@
 <!-- ABOUT -->
  <!-- ABOUT -->
 <section id="about" class="section">
-  <h2>About</h2>
-  <p class="lead">A joyful first step into French—no experience needed.</p>
-
+  <h2>Essayez! Practiquez! Volez!</h2>
   <div class="card" style="max-width: 900px; margin: 1.25rem auto 0">
     <p style="color:#334155">
       Alouette French Camp was created in 2007 and has been going strong ever since.
-      It was designed to offer kids ages 3-13 a fun opportunity to have some exposure to the French
+      It was designed to offer kids ages 4-13 a fun opportunity to have some exposure to the French
       language in a fun, joyful and supportive setting!
     </p>
 
@@ -56,7 +54,7 @@
     </p>
 
     <p style="color:#334155; margin-top:.85rem">
-      No French experience? No problem! Learn some language and culture through team games, art projects,
+      Learn some language and culture through team games, art projects,
       science experiments, songs and music, sports, a daily gameshow, field trips and more!
     </p>
   </div>
@@ -92,7 +90,7 @@
 </section>
 
 
-<!-- DAILY SCHEDULE -->
+<!-- Daily Schedule --> 
 <section id="everyday" class="section">
   <h2>Daily Schedule</h2>
 
@@ -189,7 +187,7 @@
 
 <section id="gallery" class="section">
   <h2>Gallery</h2>
-  <p class="lead">A peek at the joy, creativity, and fun.</p>
+  <p class="lead">Venez vous amuser!</p>
   <div class="gallery-preview">
     <img src="/images/camp1.jpg" alt="Camp activity" />
     <img src="/images/camp5.jpg" alt="Camp activity" />

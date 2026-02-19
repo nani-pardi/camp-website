@@ -8,20 +8,76 @@
     '/images/camp6.jpg',
     '/images/camp7.jpg',
     '/images/camp8.jpg',
-  ]
+  ];
 </script>
 
-<h2 class="text-center font-heading text-3xl text-campblue">Gallery</h2>
-<p class="mt-2 mb-8 text-center text-gray-600">A peek at activities, crafts, and all the fun!</p>
+<section class="gallery-section">
+  <h2>Gallery</h2>
+  <p>Venez vous amuser!</p>
 
-<div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-  {#each photos as src}
-    <figure class="group overflow-hidden rounded-2xl border bg-white shadow-card">
-      <img
-        {src}
-        alt="Camp photo"
-        class="h-56 w-full object-cover transition group-hover:scale-105"
-      />
-    </figure>
-  {/each}
-</div>
+  <div class="gallery-grid">
+    {#each photos as src}
+      <div class="gallery-item">
+        <img src={src} alt="Camp photo" />
+      </div>
+    {/each}
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .gallery-section h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #0055a4;
+  }
+
+  .gallery-section p {
+    margin-bottom: 2rem;
+    color: #64748b;
+  }
+
+  /* THIS is the key part */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 per row */
+    gap: 1.5rem;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

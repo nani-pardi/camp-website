@@ -53,14 +53,14 @@
         <ul style="color:#64748b;padding:0;list-style:none;display:grid;gap:.25rem">
           <li>Willows Academy</li>
           <li>Two weeks in July • 9:30–3:00 PM</li>
-          <li>Ages 4–14 • All levels</li>
+          <li>Ages 4–13 • All levels</li>
         </ul>
       </div>
       <div>
         <div style="font-weight:800;margin-bottom:.5rem">Contact</div>
         <ul style="color:#64748b;padding:0;list-style:none;display:grid;gap:.25rem">
           <li>Email: alouettecamp@gmail.com</li>
-          <li>Phone: (555) 123-4567</li>
+          <li>Phone: (773) 627-6449</li>
         </ul>
       </div>
     </div>

@@ -102,11 +102,6 @@
     </div>
   </div>
 
-  <div class="inline">
-    <input id="anonCheck" type="checkbox" bind:checked={anonymous} />
-    <label for="anonCheck">Post anonymously</label>
-  </div>
-
   <button class="btn-submit" type="submit" disabled={submitting}>
     {submitting ? 'Submitting…' : 'Submit Review'}
   </button>
