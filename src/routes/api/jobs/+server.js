@@ -32,31 +32,31 @@ export async function POST({ request }) {
   }
 }
 
-export async function POST({ request }) {
-  try {
-    const formData = await request.formData()
+// export async function POST({ request }) {
+//   try {
+//     const formData = await request.formData()
 
-    // Basic validation
-    const required = ['name', 'email', 'age', 'grade', 'why', 'recommender', 'week', 'position']
-    for (const field of required) {
-      if (!formData.get(field)) {
-        return json({ ok: false, error: 'Missing required fields.' }, { status: 400 })
-      }
-    }
+//     // Basic validation
+//     const required = ['name', 'email', 'age', 'grade', 'why', 'recommender', 'week', 'position']
+//     for (const field of required) {
+//       if (!formData.get(field)) {
+//         return json({ ok: false, error: 'Missing required fields.' }, { status: 400 })
+//       }
+//     }
 
-    // Forward to Apps Script
-    const res = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      body: formData
-    })
+//     // Forward to Apps Script
+//     const res = await fetch(GOOGLE_SCRIPT_URL, {
+//       method: 'POST',
+//       body: formData
+//     })
 
-    if (!res.ok) {
-      throw new Error('Apps Script error')
-    }
+//     if (!res.ok) {
+//       throw new Error('Apps Script error')
+//     }
 
-    return json({ ok: true })
-  } catch (err) {
-    console.error(err)
-    return json({ ok: false, error: 'Submission failed.' }, { status: 500 })
-  }
-}
+//     return json({ ok: true })
+//   } catch (err) {
+//     console.error(err)
+//     return json({ ok: false, error: 'Submission failed.' }, { status: 500 })
+//   }
+// }
