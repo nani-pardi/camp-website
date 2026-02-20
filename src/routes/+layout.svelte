@@ -30,6 +30,7 @@
         <a href="/jobs">Jobs</a>
         <a href="/reviews">Reviews</a>
         <a href="/gallery">Gallery</a>
+        <a href="/faq">FAQs</a>
       </nav>
 
       <a href="/register" class="btn btn-primary cta">Register Now</a>
