@@ -386,3 +386,59 @@ h3,
   color: rgba(255, 255, 255, 0.85);
   padding: 1rem;
 }
+
+.reviews-section {
+  max-width: 1000px;
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.reviews-title {
+  font-family: 'Playfair Display', ui-serif, Georgia, serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #000000; /* French blue */
+  margin-bottom: 2rem;
+}
+
+.reviews-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .reviews-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.review-card {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-left: 6px solid #ef4135; /* French red accent */
+  text-align: left;
+}
+
+.quote-mark {
+  font-size: 3rem;
+  color: #ef4135;
+  line-height: 0;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+}
+
+.review-text {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+}
+
+.review-author {
+  font-weight: 700;
+  color: #0f172a;
+  font-size: 0.9rem;
+}

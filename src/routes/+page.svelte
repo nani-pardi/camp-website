@@ -40,7 +40,7 @@
 <!-- ABOUT -->
  <!-- ABOUT -->
 <section id="about" class="section">
-  <h2>Essayez! Pratiquez! Volez! Try! Practice! Fly!</h2>
+  <h2>Essayez, Pratiquez, Volez! Try, Practice, Fly!</h2>
   <div class="card" style="max-width: 900px; margin: 1.25rem auto 0">
     <p style="color:#334155">
       Alouette French Camp was created in 2007 and has been going strong ever since.
@@ -175,16 +175,33 @@
 
 
 <!-- REVIEWS -->
-<section id="reviews" class="section">
-  <h2>Reviews</h2>
+<section id="reviews" class="reviews-section">
+  <h2 class="reviews-title">Reviews</h2>
 
-  <div class="card">
-    <p style="color:#334155;margin-top:.85rem">
-    My boys love Camp Alouette, every summer it’s their number 1 requested camp to attend. This camp knows the way to my boys hearts, from delicious food to competitive games my boys manage to learn the French language in a fun and engaging environment.
-    </p>
+  <div class="reviews-grid">
+
+    <article class="review-card">
+      <div class="quote-mark">“</div>
+      <p class="review-text">
+        My boys love Camp Alouette—every summer it’s their number one requested
+        camp to attend. From delicious food to competitive games, they learn
+        French in a fun and engaging environment.
+      </p>
+      <div class="review-author">— Parent of 2 campers</div>
+    </article>
+
+    <article class="review-card">
+      <div class="quote-mark">“</div>
+      <p class="review-text">
+        French camp is a slice of heaven! We’ve been going every summer since
+        my almost 14-year-old was just 3 years old. My kids look forward to it
+        every year and all of its magical traditions and joys.
+      </p>
+      <div class="review-author">— Returning Camp Family</div>
+    </article>
+
   </div>
 </section>
-
 
 <section id="gallery" class="section">
   <h2>Gallery</h2>
