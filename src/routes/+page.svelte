@@ -90,22 +90,23 @@
 </section>
 
 
-<!-- Daily Schedule --> 
+<!-- Weekly Schedule -->
 <section id="everyday" class="section">
   <h2>Weekly Schedule</h2>
 
   <div class="card">
-    <p>— Checking in at “customs” and begin a warmup activity</p>
-    <p>10:00 AM — Morning practice</p>
-    <p>11:00 AM — Bonjour song</p>
-    <p>11:30 AM — Outdoor activity</p>
-    <p>12:00 PM — Lunch</p>
-    <p>12:30 PM — Game show</p>
-    <p>1:00 PM — Science</p>
-    <p>1:30 PM — Art</p>
-    <p>2:00 PM — Marionette show</p>
-    <p>2:30 PM — Outdoor sports game</p>
-    <p>2:50 PM — Closing activity</p>
+    <p>Weekly schedule includes:</p>
+    <ul>
+      <li>Checking in at “customs” each morning</li>
+      <li>Morning warmups</li>
+      <li>Outdoor sports, games, and water fun</li>
+      <li>Internationally themed lunches</li>
+      <li>Game show called FLASH</li>
+      <li>Art projects</li>
+      <li>Science experiments and music</li>
+      <li>Marionnette show for all ages</li>
+      <li>Local field trips</li>
+    </ul>
   </div>
 </section>
 
