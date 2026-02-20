@@ -1,29 +1,27 @@
 import { json } from '@sveltejs/kit'
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbyl-jtGqkBJjemBmnsBN79q8pgodRgNELYvD8wSMY2kB59wh8APpORdYTF8YrKBZDDW0Q/exec'
+  'https://script.google.com/macros/s/AKfycbwU4JzuRyLH9qYDHUUTvkBuvYkGUrQhvEbyrxX8MNaBGZOw6t36bdCCCD9yaQFibzJdtw/exec'
 
 export async function POST({ request }) {
   try {
     const payload = await request.json()
 
-    // basic validation
+    const name = String(payload?.name ?? '').trim()
+    const email = String(payload?.email ?? '').trim()
     const review = String(payload?.review ?? '').trim()
-    const anonymous = payload?.anonymous ? '1' : '0'
-    const name = anonymous === '1' ? '' : String(payload?.name ?? '').trim()
 
-    if (!review) {
-      return json({ ok: false, error: 'Review is required.' }, { status: 400 })
-    }
-    if (review.length > 600) {
+    if (!review) return json({ ok: false, error: 'Review is required.' }, { status: 400 })
+    if (review.length > 600)
       return json({ ok: false, error: 'Review must be 600 characters or less.' }, { status: 400 })
-    }
 
-    // Convert JSON -> x-www-form-urlencoded for Apps Script
+    if (email && !/^\S+@\S+\.\S+$/.test(email))
+      return json({ ok: false, error: 'Invalid email.' }, { status: 400 })
+
     const body = new URLSearchParams()
-    body.set('name', name)
+    body.set('name', name)   // can be blank
+    body.set('email', email) // can be blank
     body.set('review', review)
-    body.set('anonymous', anonymous)
 
     const resp = await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',

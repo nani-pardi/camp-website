@@ -1,18 +1,12 @@
 <script>
   let name = ''
+  let email = ''
   let review = ''
-  let anonymous = false
+
   let submitting = false
   let result = null // { ok, error? }
 
-  // Optimistic list
-  let reviews = []
-
   const MAX_LEN = 600
-
-  function sanitize(text) {
-    return text.replace(/[<>]/g, '')
-  }
 
   async function handleSubmit() {
     result = null
@@ -27,45 +21,35 @@
       return
     }
 
-    submitting = true
-
-    const displayName = anonymous || !name.trim() ? 'Anonymous' : name.trim()
-    const local = {
-      name: displayName,
-      text: sanitize(text),
-      ts: new Date().toISOString()
+    // If email is filled, do a light check
+    if (email.trim() && !/^\S+@\S+\.\S+$/.test(email.trim())) {
+      alert('Please enter a valid email (or leave it blank).')
+      return
     }
 
-    // Optimistic UI
-    reviews = [local, ...reviews]
-
+    submitting = true
     try {
       const res = await fetch('/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
-          review: text,
-          anonymous
+          email, // optional
+          review: text
         })
       })
 
       const data = await res.json()
       result = data
 
-      if (!data?.ok) {
-        // rollback optimistic insert
-        reviews = reviews.filter((r) => r !== local)
-        throw new Error(data?.error || 'Submission failed.')
+      if (data?.ok) {
+        name = ''
+        email = ''
+        review = ''
       }
-
-      // reset fields
-      name = ''
-      review = ''
-      anonymous = false
     } catch (err) {
       console.error(err)
-      result = { ok: false, error: err?.message || 'There was a problem submitting your review.' }
+      result = { ok: false, error: 'There was a problem submitting your review. Please try again.' }
     } finally {
       submitting = false
     }
@@ -81,8 +65,20 @@
       id="reviewerName"
       class="input"
       bind:value={name}
-      placeholder="Leave blank to remain anonymous"
-      disabled={anonymous}
+      placeholder="Leave blank to post as Anonymous"
+      autocomplete="name"
+    />
+  </div>
+
+  <div class="field">
+    <label class="label" for="reviewerEmail">Your Email (optional)</label>
+    <input
+      id="reviewerEmail"
+      class="input"
+      type="email"
+      bind:value={email}
+      placeholder="name@example.com"
+      autocomplete="email"
     />
   </div>
 
@@ -91,18 +87,13 @@
     <textarea
       id="reviewText"
       class="input textarea"
-      rows="5"
+      rows="6"
       bind:value={review}
       maxlength={MAX_LEN}
       placeholder="What did your family love about Alouette?"
       required
     />
-    <div class="hint">{review.length}/{MAX_LEN}</div>
-  </div>
-
-  <div class="inline">
-    <input id="anon" type="checkbox" bind:checked={anonymous} />
-    <label for="anon">Submit anonymously</label>
+    <div class="hint right">{review.length}/{MAX_LEN}</div>
   </div>
 
   <button class="btn-submit" type="submit" disabled={submitting}>
@@ -123,25 +114,6 @@
   {/if}
 </form>
 
-{#if reviews.length}
-  <section class="reviews-list">
-    {#each reviews as r}
-      <article class="review-card">
-        <div class="review-head">
-          <div class="avatar">{r.name[0]}</div>
-          <div class="who">
-            <div class="who-name">{r.name}</div>
-            <div class="when">{new Date(r.ts).toLocaleDateString()}</div>
-          </div>
-        </div>
-        <p class="review-text">{r.text}</p>
-      </article>
-    {/each}
-  </section>
-{:else}
-
-{/if}
-
 <style>
   .reviews-title {
     font-family: 'Playfair Display', ui-serif, Georgia, serif;
@@ -153,7 +125,7 @@
 
   .form-card {
     max-width: 640px;
-    margin: 0 auto 1.5rem auto;
+    margin: 0 auto 2rem auto;
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 18px;
@@ -172,24 +144,22 @@
     border-radius: 12px;
     border: 1px solid #cbd5e1;
     outline: none;
+    background: #fff;
   }
-  .textarea { resize: vertical; min-height: 120px; }
-  .input:focus { border-color: #1b2b6b; box-shadow: 0 0 0 3px rgba(27, 43, 107, 0.15); }
+
+  .textarea { resize: vertical; min-height: 140px; }
+
+  .input:focus {
+    border-color: #1b2b6b;
+    box-shadow: 0 0 0 3px rgba(27, 43, 107, 0.15);
+  }
 
   .hint {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #64748b;
-    text-align: right;
-    margin-top: 0.25rem;
+    margin-top: 0.15rem;
   }
-
-  .inline {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #334155;
-    font-weight: 600;
-  }
+  .hint.right { text-align: right; }
 
   .btn-submit {
     width: 100%;
@@ -198,7 +168,7 @@
     border-radius: 14px;
     font-weight: 800;
     color: #fff;
-    background: #ff002f;
+    background: #f5123b;
     cursor: pointer;
     box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.1);
     transition: transform 0.15s ease, opacity 0.2s ease;
@@ -223,49 +193,5 @@
   }
   .notice-title { font-weight: 900; margin-bottom: 0.35rem; }
   .notice-text { color: #0f172a; margin: 0; }
-  .notice.error { border-color: rgba(255, 0, 0, 0.4); background: rgba(239, 68, 68, 0.06); }
-
-  .reviews-list {
-    max-width: 820px;
-    margin: 0.5rem auto 2rem auto;
-    display: grid;
-    gap: 0.9rem;
-    padding: 0 1rem;
-  }
-
-  .review-card {
-    background: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 1rem 1.1rem;
-    box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 6px 12px rgba(15, 23, 42, 0.08);
-  }
-
-  .review-head {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #1b2b6b;
-    color: #fff;
-    display: grid;
-    place-items: center;
-    font-weight: 900;
-  }
-
-  .who-name { font-weight: 800; color: #0f172a; }
-  .when { font-size: 0.8rem; color: #64748b; }
-  .review-text { color: #334155; margin-top: 0.25rem; }
-
-  .empty {
-    text-align: center;
-    color: #64748b;
-    margin: 1rem 0 2rem;
-  }
+  .notice.error { border-color: rgba(232, 18, 18, 0.4); background: rgba(239, 68, 68, 0.06); }
 </style>

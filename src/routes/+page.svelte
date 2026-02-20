@@ -40,7 +40,7 @@
 <!-- ABOUT -->
  <!-- ABOUT -->
 <section id="about" class="section">
-  <h2>Essayez! Pratiquez! Volez!</h2>
+  <h2>Essayez! Pratiquez! Volez! Try! Practice! Fly!</h2>
   <div class="card" style="max-width: 900px; margin: 1.25rem auto 0">
     <p style="color:#334155">
       Alouette French Camp was created in 2007 and has been going strong ever since.
