@@ -3,23 +3,20 @@
   let review = ''
   let anonymous = false
   let submitting = false
-  let success = ''
+  let result = null // { ok, error? }
 
-  // Local list so new reviews appear instantly (optimistic UI)
+  // Optimistic list
   let reviews = []
-
-  // Your Apps Script Web App URL (must end with /exec)
-  const GOOGLE_SCRIPT_URL =
-    'https://script.google.com/macros/s/AKfycbzGWszMds5L0cAQgYvyUtLxVRKcxMS9AZxTPVxaZZ6XvD7YtvNcwiEgDmvIGLTZJ1lZ2g/exec'
 
   const MAX_LEN = 600
 
   function sanitize(text) {
-    // Very light display sanitization; GAS should still store safely server-side
     return text.replace(/[<>]/g, '')
   }
 
   async function handleSubmit() {
+    result = null
+
     const text = review.trim()
     if (!text) {
       alert('Please write a short review.')
@@ -31,41 +28,44 @@
     }
 
     submitting = true
-    success = ''
 
-    // Build FormData to avoid custom headers (no preflight)
-    const fd = new FormData()
-    fd.set('name', anonymous ? '' : name) // empty = treat as anonymous on GAS side
-    fd.set('review', text)
-    fd.set('anonymous', anonymous ? '1' : '0')
-
-    // Optimistic UI: add the review locally first
     const displayName = anonymous || !name.trim() ? 'Anonymous' : name.trim()
     const local = {
       name: displayName,
       text: sanitize(text),
       ts: new Date().toISOString()
     }
+
+    // Optimistic UI
     reviews = [local, ...reviews]
 
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
+      const res = await fetch('/api/reviews', {
         method: 'POST',
-        mode: 'no-cors',
-        body: fd
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          review: text,
+          anonymous
+        })
       })
 
-      // We can’t read the response in no-cors; assume success
-      success = 'Thanks! Your review has been submitted.'
-      // Reset fields
+      const data = await res.json()
+      result = data
+
+      if (!data?.ok) {
+        // rollback optimistic insert
+        reviews = reviews.filter((r) => r !== local)
+        throw new Error(data?.error || 'Submission failed.')
+      }
+
+      // reset fields
       name = ''
       review = ''
       anonymous = false
     } catch (err) {
       console.error(err)
-      alert('There was a problem submitting your review. Please try again.')
-      // Roll back optimistic insert if you want:
-      reviews = reviews.filter((r) => r !== local)
+      result = { ok: false, error: err?.message || 'There was a problem submitting your review.' }
     } finally {
       submitting = false
     }
@@ -81,7 +81,7 @@
       id="reviewerName"
       class="input"
       bind:value={name}
-      placeholder="Leave blank or check anonymous"
+      placeholder="Leave blank to remain anonymous"
       disabled={anonymous}
     />
   </div>
@@ -90,24 +90,36 @@
     <label class="label" for="reviewText">Your Review</label>
     <textarea
       id="reviewText"
-      class="input"
+      class="input textarea"
       rows="5"
       bind:value={review}
       maxlength={MAX_LEN}
       placeholder="What did your family love about Alouette?"
       required
     />
-    <div class="hint">
-      {review.length}/{MAX_LEN}
-    </div>
+    <div class="hint">{review.length}/{MAX_LEN}</div>
+  </div>
+
+  <div class="inline">
+    <input id="anon" type="checkbox" bind:checked={anonymous} />
+    <label for="anon">Submit anonymously</label>
   </div>
 
   <button class="btn-submit" type="submit" disabled={submitting}>
     {submitting ? 'Submitting…' : 'Submit Review'}
   </button>
 
-  {#if success}
-    <div class="success" role="status" aria-live="polite">{success}</div>
+  {#if result}
+    {#if result.ok}
+      <div class="success" role="status" aria-live="polite">
+        ✅ Thanks! Your review has been submitted.
+      </div>
+    {:else}
+      <div class="notice error" role="alert">
+        <div class="notice-title">❌ Submission Problem</div>
+        <p class="notice-text">{result.error || 'Please try again.'}</p>
+      </div>
+    {/if}
   {/if}
 </form>
 
@@ -127,7 +139,7 @@
     {/each}
   </section>
 {:else}
-  <p class="empty">Be the first to leave a review!</p>
+
 {/if}
 
 <style>
@@ -151,36 +163,32 @@
     gap: 1rem;
   }
 
-  .field {
-    display: grid;
-    gap: 0.35rem;
-  }
-  .label {
-    font-weight: 700;
-    color: #334155;
-  }
+  .field { display: grid; gap: 0.35rem; }
+  .label { font-weight: 700; color: #334155; }
+
   .input {
     width: 100%;
     padding: 0.75rem 0.9rem;
     border-radius: 12px;
     border: 1px solid #cbd5e1;
     outline: none;
-    resize: vertical;
   }
-  .input:focus {
-    border-color: #1b2b6b;
-    box-shadow: 0 0 0 3px rgba(27, 43, 107, 0.15);
-  }
+  .textarea { resize: vertical; min-height: 120px; }
+  .input:focus { border-color: #1b2b6b; box-shadow: 0 0 0 3px rgba(27, 43, 107, 0.15); }
+
   .hint {
     font-size: 0.8rem;
     color: #64748b;
     text-align: right;
     margin-top: 0.25rem;
   }
+
   .inline {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #334155;
+    font-weight: 600;
   }
 
   .btn-submit {
@@ -190,30 +198,41 @@
     border-radius: 14px;
     font-weight: 800;
     color: #fff;
-    background: #c31333;
+    background: #ff002f;
     cursor: pointer;
     box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 8px 18px rgba(15, 23, 42, 0.1);
-    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.15s ease, opacity 0.2s ease;
   }
   .btn-submit:hover { transform: translateY(-1px); }
   .btn-submit:disabled { opacity: 0.7; transform: none; cursor: not-allowed; }
 
   .success {
-    margin-top: 0.5rem;
     color: #155e75;
     background: #ecfeff;
     border: 1px solid #a5f3fc;
     border-radius: 12px;
     padding: 0.75rem 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
   }
+
+  .notice {
+    border-radius: 12px;
+    padding: 0.85rem 0.95rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(248, 250, 252, 0.7);
+  }
+  .notice-title { font-weight: 900; margin-bottom: 0.35rem; }
+  .notice-text { color: #0f172a; margin: 0; }
+  .notice.error { border-color: rgba(255, 0, 0, 0.4); background: rgba(239, 68, 68, 0.06); }
 
   .reviews-list {
     max-width: 820px;
     margin: 0.5rem auto 2rem auto;
     display: grid;
     gap: 0.9rem;
+    padding: 0 1rem;
   }
+
   .review-card {
     background: #fff;
     border: 1px solid #e5e7eb;
@@ -221,12 +240,14 @@
     padding: 1rem 1.1rem;
     box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04), 0 6px 12px rgba(15, 23, 42, 0.08);
   }
+
   .review-head {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.25rem;
   }
+
   .avatar {
     width: 36px;
     height: 36px;
@@ -237,6 +258,7 @@
     place-items: center;
     font-weight: 900;
   }
+
   .who-name { font-weight: 800; color: #0f172a; }
   .when { font-size: 0.8rem; color: #64748b; }
   .review-text { color: #334155; margin-top: 0.25rem; }
