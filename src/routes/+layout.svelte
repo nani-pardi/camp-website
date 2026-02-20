@@ -25,7 +25,7 @@
 
       <nav class="nav">
         <a href="/">Home</a>
-        <a href="/staff">Letter from the Director</a>
+        <a href="/staff">Director</a>
         <a href="/register">Register</a>
         <a href="/jobs">Jobs</a>
         <a href="/reviews">Reviews</a>

@@ -442,3 +442,242 @@ h3,
   color: #0f172a;
   font-size: 0.9rem;
 }
+/* Shared headings */
+.section-title {
+  font-family: 'Playfair Display', ui-serif, Georgia, serif;
+  font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+  color: #000000; /* French blue */
+  text-align: center;
+  margin: 0 0 0.4rem 0;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #64748b;
+  margin: 0 0 1.6rem 0;
+  font-weight: 600;
+}
+
+/* A nicer “main card” style */
+.feature-card {
+  max-width: 920px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  padding: 1.6rem 1.7rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-left: 6px solid #ef4135; /* French red accent */
+}
+
+/* Weekly schedule list */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  margin-top: 0.35rem;
+  background: #ef4135;
+  flex: 0 0 auto;
+}
+
+/* Lunch callouts */
+.callouts {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 820px) {
+  .callouts {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.callout {
+  border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 18px;
+  padding: 1.1rem 1.1rem;
+  background: rgba(248,250,252,0.7);
+}
+
+.callout.accent {
+  border-color: rgba(239,65,53,0.35);
+  background: rgba(129, 46, 40, 0.06);
+}
+
+.callout-title {
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 0.35rem;
+}
+
+.callout-text {
+  margin: 0;
+  color: #334155;
+  line-height: 1.55;
+}
+
+/* Jobs grid */
+.jobs-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.2rem;
+}
+
+@media (min-width: 860px) {
+  .jobs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.job-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 1.35rem 1.25rem;
+  box-shadow: 0 8px 18px rgba(15,23,42,0.10);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(15,23,42,0.14);
+}
+
+.job-title {
+  margin: 0 0 0.55rem 0;
+  color: #c31333; /* red */
+  font-weight: 900;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.job-text {
+  margin: 0;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.pill {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(0,85,164,0.10);
+  color: #0055a4;
+  font-weight: 900;
+  font-size: 0.78rem;
+  vertical-align: middle;
+}
+
+/* Center button row */
+.center {
+  text-align: center;
+  margin-top: 1.25rem;
+}
+/* ABOUT */
+.about-section {
+  text-align: center;
+}
+
+.subtitle-english {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.about-card {
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  background: #fff;
+  border-radius: 22px;
+  padding: 2rem 2rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  border-left: 6px solid #0055a4;
+  text-align: left;
+  display: grid;
+  gap: 1rem;
+}
+
+.about-card p {
+  margin: 0;
+  color: #334155;
+  line-height: 1.7;
+}
+
+/* PRICING */
+.pricing-grid {
+  max-width: 1000px;
+  margin: 2rem auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 860px) {
+  .pricing-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pricing-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 1.75rem;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.12);
+}
+
+.pricing-card.featured {
+  border: 2px solid #ef4135;
+}
+
+.pricing-badge {
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #0055a4;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-title {
+  margin: 0;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.pricing-time {
+  margin: 0.5rem 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.pricing-price {
+  margin-top: 0.75rem;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #ef4135;
+}

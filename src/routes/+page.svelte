@@ -38,141 +38,155 @@
 </section>
 
 <!-- ABOUT -->
- <!-- ABOUT -->
-<section id="about" class="section">
-  <h2>Essayez, Pratiquez, Volez! Try, Practice, Fly!</h2>
-  <div class="card" style="max-width: 900px; margin: 1.25rem auto 0">
-    <p style="color:#334155">
-      Alouette French Camp was created in 2007 and has been going strong ever since.
-      It was designed to offer kids ages 4-13 a fun opportunity to have some exposure to the French
-      language in a fun, joyful and supportive setting!
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+  <h2 class="section-title">
+    Essayez, Pratiquez, Volez!
+    <span class="subtitle-english">Try, Practice, Fly!</span>
+  </h2>
+
+  <div class="about-card">
+    <p>
+      Founded in 2007, Alouette French Camp has been inspiring young learners for
+      over 17 years. Designed for children ages 4–13, our camp offers a joyful,
+      immersive introduction to the French language in a supportive environment.
     </p>
 
-    <p style="color:#334155; margin-top:.85rem">
-      After 17 years we have cracked the code for how to make language learning more fun than you can
-      imagine! Absolutely no French language experience is necessary.
+    <p>
+      We’ve truly “cracked the code” on making language learning exciting,
+      engaging, and confidence-building. No prior French experience is required,
+      just curiosity and a willingness to try!
     </p>
 
-    <p style="color:#334155; margin-top:.85rem">
-      Learn some language and culture through team games, art projects,
-      science experiments, songs and music, sports, a daily gameshow, field trips and more!
+    <p>
+      Campers learn through team games, art projects, science experiments,
+      music, sports, daily game shows, field trips, and more,
+      all woven together with authentic French language and culture.
     </p>
   </div>
 </section>
 
-<!-- WEEKS / PRICING --> 
+<!-- WEEKS / PRICING -->
 <section id="weeks" class="section">
-  <h2>Pick Your Week</h2>
-  <p class="lead">Limited enrollment (first 30 campers).</p>
+  <h2 class="section-title">Choose Your Week</h2>
+  <p class="section-subtitle">Limited enrollment — first 30 campers.</p>
 
-  <div
-    class="section"
-    style="display:grid;gap:1rem;max-width:900px;margin:0 auto;grid-template-columns:repeat(2,1fr)"
-  >
-    <div class="card">
-      <h3 class="display" style="font-size:1.25rem">One Week</h3>
-      <p>July 20–24</p>
-      <p style="font-size:.9rem;color:#64748b">9:30–3:00 PM</p>
-      <div style="font-weight:800;margin-top:.5rem">$425</div>
+  <div class="pricing-grid">
+
+    <!-- Week 1 -->
+    <div class="pricing-card">
+      <div class="pricing-badge">Week 1</div>
+      <h3 class="pricing-title">July 14–18</h3>
+      <p class="pricing-time">9:30 AM – 3:00 PM</p>
+      <div class="pricing-price">$425</div>
     </div>
 
-    <div class="card">
-      <h3 class="display" style="font-size:1.25rem">Two Weeks</h3>
-      <p>Both sessions: July 20-24 & July 27-31</p>
-      <p style="font-size:.9rem;color:#64748b">9:30–3:00 PM</p>
-      <div style="font-weight:800;margin-top:.5rem">$800</div>
+    <!-- Week 2 -->
+    <div class="pricing-card">
+      <div class="pricing-badge">Week 2</div>
+      <h3 class="pricing-title">July 21–25</h3>
+      <p class="pricing-time">9:30 AM – 3:00 PM</p>
+      <div class="pricing-price">$425</div>
     </div>
+
+    <!-- Both Weeks -->
+    <div class="pricing-card">
+      <div class="pricing-badge">Both Weeks</div>
+      <h3 class="pricing-title">July 14–18 & July 21–25</h3>
+      <p class="pricing-time">9:30 AM – 3:00 PM</p>
+      <div class="pricing-price">$800</div>
+    </div>
+
   </div>
 
-  <div style="text-align:center;margin-top:1rem">
+  <div class="center">
     <a class="btn btn-primary" href="/register">Register Now</a>
   </div>
 </section>
 
 
-<!-- Weekly Schedule -->
+<!-- WEEKLY SCHEDULE -->
 <section id="everyday" class="section">
-  <h2>Weekly Schedule</h2>
+  <h2 class="section-title">Weekly Schedule</h2>
+  <p class="section-subtitle">A joyful routine built around language, play, and confidence.</p>
 
-  <div class="card">
-    <p>Weekly schedule includes:</p>
-    <ul>
-      <li>Checking in at “customs” each morning</li>
-      <li>Morning warmups</li>
-      <li>Outdoor sports, games, and water fun</li>
-      <li>Internationally themed lunches</li>
-      <li>Game show called FLASH</li>
-      <li>Art projects</li>
-      <li>Science experiments and music</li>
-      <li>Marionnette show for all ages</li>
-      <li>Local field trips</li>
+  <div class="feature-card">
+    <ul class="feature-list">
+      <li><span class="dot"></span>Checking in at “customs” each morning</li>
+      <li><span class="dot"></span>Morning warmups</li>
+      <li><span class="dot"></span>Outdoor sports, games, and water fun</li>
+      <li><span class="dot"></span>Internationally themed lunches</li>
+      <li><span class="dot"></span>Daily game show: <strong>FLASH</strong></li>
+      <li><span class="dot"></span>Art projects</li>
+      <li><span class="dot"></span>Science experiments and music</li>
+      <li><span class="dot"></span>Marionnette show for all ages</li>
+      <li><span class="dot"></span>Local field trips</li>
     </ul>
   </div>
 </section>
 
 <!-- LUNCH & SNACK -->
 <section id="food" class="section">
-  <h2>Lunch & Snack</h2>
-  <div class="card">
-    <p>
-      Each day we prepare healthy and balanced international-themed lunches,
-      provided for an additional <strong>$60 per week</strong>.
-    </p>
+  <h2 class="section-title">Lunch & Snack</h2>
+  <p class="section-subtitle">Fuel for a full day of learning and play.</p>
 
-    <p style="margin-top:.75rem">
-      <strong>Crêpe party on Friday!</strong>
-    </p>
+  <div class="feature-card">
+    <div class="callouts">
+      <div class="callout">
+        <div class="callout-title">International-Themed Lunch</div>
+        <p class="callout-text">
+          We prepare healthy, balanced lunches each day for an additional <strong>$60/week</strong>.
+        </p>
+      </div>
 
-    <p style="margin-top:.75rem">
-      A healthy snack is also provided during the day.
-    </p>
+      <div class="callout accent">
+        <div class="callout-title">Friday Crêpe Party</div>
+        <p class="callout-text">A favorite tradition to celebrate the week—<strong>crêpes on Friday!</strong></p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">Daily Snack</div>
+        <p class="callout-text">A healthy snack is also provided during the day.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-
+<!-- JOBS -->
 <section id="jobs" class="section">
-  <h2>Job Opportunities</h2>
-  <p class="lead">Join our team and help create a joyful, immersive French camp experience.</p>
+  <h2 class="section-title">Job Opportunities</h2>
+  <p class="section-subtitle">Join our team and help create a joyful, immersive French camp experience.</p>
 
-  <div class="grid-3 section">
-    <!-- Junior Counselor -->
-    <section class="card">
-      <h3 class="display" style="font-size:1.1rem">
-        Junior Monitrice / Moniteur (ages 14–16)
-      </h3>
-      <p style="color:#334155">
-        Build leadership and teamwork skills while assisting counselors and working with younger
-        campers in a fun, supportive environment.
+  <div class="jobs-grid">
+    <article class="job-card">
+      <h3 class="job-title">Junior Monitrice / Moniteur <span class="pill">Ages 14–16</span></h3>
+      <p class="job-text">
+        Build leadership and teamwork skills while assisting counselors and supporting younger campers
+        in a fun, encouraging environment.
       </p>
-    </section>
+    </article>
 
-    <!-- Counselor -->
-    <section class="card">
-      <h3 class="display" style="font-size:1.1rem">
-        Monitrice / Moniteur (17+)
-      </h3>
-      <p style="color:#334155">
-        Join our staff team and help lead activities, games, and daily camp programming while
-        creating an unforgettable experience for campers.
+    <article class="job-card">
+      <h3 class="job-title">Monitrice / Moniteur <span class="pill">Ages 17+</span></h3>
+      <p class="job-text">
+        Help lead activities, games, and daily camp programming while creating an unforgettable,
+        confidence-building experience for campers.
       </p>
-    </section>
+    </article>
 
-    <!-- Photographer -->
-    <section class="card">
-      <h3 class="display" style="font-size:1.1rem">
-        Camp Photographer
-      </h3>
-      <p style="color:#334155">
-        Capture the fun! Photograph daily activities and special events to help families see camp
-        life through their child’s eyes.
+    <article class="job-card">
+      <h3 class="job-title">Camp Photographer <span class="pill">Ages 14+</span></h3>
+      <p class="job-text">
+        Capture the fun! Photograph daily activities and special moments so families can see camp life
+        through their child’s eyes.
       </p>
-    </section>
+    </article>
   </div>
-  <div style="text-align:center;margin-top:1.25rem">
+
+  <div class="center">
     <a class="btn btn-primary" href="/jobs">Apply Now</a>
   </div>
 </section>
-
 
 <!-- REVIEWS -->
 <section id="reviews" class="reviews-section">
@@ -200,6 +214,9 @@
       <div class="review-author">— Returning Camp Family</div>
     </article>
 
+  </div>
+    <div class="center">
+    <a class="btn btn-primary" href="/reviews">Leave a review!</a>
   </div>
 </section>
 
