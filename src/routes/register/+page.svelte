@@ -1,7 +1,7 @@
 <script>
   let name = ''
   let age = ''
-  let campweek = 'week1' // week1 | both
+  let campweek = 'week1' // week1 | week2 | both 
   let parentEmail = ''
   let school = ''
 
@@ -97,7 +97,8 @@
     <div class="field">
       <label class="label" for="campweek">Camp Option</label>
       <select id="campweek" class="input" bind:value={campweek} required>
-        <option value="week1">One Week (Week 1: July 14–18)</option>
+        <option value="week1">Week 1 (July 14–18)</option>
+        <option value="week2">Week 2 (July 21-25)</option>
         <option value="both">Both Weeks (July 14–18 & July 21–25)</option>
       </select>
     </div>
