@@ -2,7 +2,7 @@
 <section class="hero hero-bg">
   <div class="container wrap">
     <div>
-      <h1> Bonjour et Bienvenue à Alouette French Camp!</h1>
+      <h1> Bonjour et Bienvenue! Hello and Welcome!</h1>
       <p>
         Did you know that even some minor exposure to a foreign language makes you smarter? It's true!
         Language learning enhances critical thinking skills, problem-solving abilities, and memory retention, positively impacting academic achievement.
@@ -28,7 +28,7 @@
   <nav class="container chips" style="padding-bottom:1rem">
     <a class="chip" href="#about">About</a>
     <a class="chip" href="#weeks">Weeks & Pricing</a>
-    <a class="chip" href="#everyday">Every Day</a>
+    <a class="chip" href="#everyday">Weekly Activities</a>
     <a class="chip" href="#food">Food</a>
     <a class="chip" href="#jobs">Job Opportunities</a>
     <a class="chip" href="#reviews">Reviews</a>
@@ -92,10 +92,10 @@
 
 <!-- Daily Schedule --> 
 <section id="everyday" class="section">
-  <h2>Daily Schedule</h2>
+  <h2>Weekly Schedule</h2>
 
   <div class="card">
-    <p>9:30 AM — Check in at “customs” and begin a warmup activity</p>
+    <p>— Checking in at “customs” and begin a warmup activity</p>
     <p>10:00 AM — Morning practice</p>
     <p>11:00 AM — Bonjour song</p>
     <p>11:30 AM — Outdoor activity</p>

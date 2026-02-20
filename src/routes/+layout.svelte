@@ -19,7 +19,7 @@
           <div class="header-title">
             Alouette French Language Camp
           </div>
-          <div style="font-size:.75rem;color:rgba(255,255,255,.85)">Expand your mind this summer!</div>
+          <div style="font-size:.75rem;color:rgba(255,255,255,.85)">Language learning on a whole new level - FUN!</div>
         </div>
       </a>
 
@@ -45,7 +45,7 @@
       <div>
         <div class="display" style="font-size:1.15rem">Alouette French Language Camp</div>
         <p style="color:#ffffff;font-size:.95rem;margin-top:.35rem">
-          Expand your mind this summer!
+          Language learning on a whole new level - FUN!
         </p>
       </div>
       <div>

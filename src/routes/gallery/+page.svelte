@@ -8,6 +8,16 @@
     '/images/camp6.jpg',
     '/images/camp7.jpg',
     '/images/camp8.jpg',
+    '/images/camp9.jpg',
+    '/images/camp10.jpg',
+    '/images/camp11.jpg',
+    '/images/camp12.jpg',
+    '/images/camp13.jpg',
+    '/images/camp14.jpg',
+    '/images/camp15.jpg',
+    '/images/camp16.jpg',
+    '/images/camp17.jpg',
+    '/images/camp18.jpg',
   ];
 </script>
 

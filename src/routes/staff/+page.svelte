@@ -3,15 +3,7 @@
     {
       name: 'Pascale Burns',
       role: 'Camp Director',
-      blurb: `French Camp is lovingly dedicated to my parents, Marie Rose Raoul† and Joseph Raoul, Jr., who inspired in me, from a very young age, a deep love and excitement for learning languages—especially French.
-
-At Alouette French Camp, our mission is simple: to spark the joy of language learning in a way that meets children exactly where they are developmentally. On the very first day of camp, we talk about the incredible benefits of knowing more than one language. From there, we set individual, attainable goals with each camper—and that’s when the real magic begins.
-
-Our approach is guided by the Pareto Principle, or the 80/20 rule: by focusing on high-frequency words, foundational grammar, and training the ear to understand language in context, children absorb more than you might imagine. Year after year, both campers and parents are genuinely amazed at how much is learned in just two short weeks.
-
-Founded in 2007, Alouette French Camp has been going strong for over 17 years. We would love for your child to join us. I can confidently say it will be one of the most fun and productive two weeks of the summer.
-
-Vive le Français!`,
+      blurb: `French Camp is lovingly dedicated to my parents, Marie Rose Raoul† and Joseph Raoul, Jr., who inspired in me, from a very young age, a deep love and excitement for learning languages—especially French. At Alouette French Camp, our mission is simple: to spark the joy of language learning in a way that meets children exactly where they are developmentally…and to do it while having a ton of fun! On the very first day of camp, we talk about the incredible benefits of knowing more than one language. From there, we set individual, attainable goals with each camper—and that’s when the real magic begins! Both campers and parents are genuinely amazed at how much is learned in just two short weeks. Our campers are enthusiastic learners and come back year after year! Our approach is guided by the Pareto Principle, or the 80/20 rule: by focusing on high-frequency words, foundational grammar, and training the ear to understand language in context, children absorb more than you might imagine. Founded in 2007, Alouette French Camp has been going strong for many years and we would love for your child to join the Alouette family! I can confidently say it will be the most fun and productive week(s) of their summer. Vive le Français!`,
 
       photo: '/images/director_headshot.jpg'
     }
