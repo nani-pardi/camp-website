@@ -387,12 +387,6 @@ h3,
   padding: 1rem;
 }
 
-.reviews-section {
-  max-width: 1000px;
-  margin: 0 auto 3rem auto;
-  padding: 0 1rem;
-  text-align: center;
-}
 
 .reviews-title {
   font-family: 'Playfair Display', ui-serif, Georgia, serif;

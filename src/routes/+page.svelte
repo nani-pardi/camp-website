@@ -15,11 +15,10 @@
 
     <div class="card-glass">
       <ul class="badge-list">
-        <li>📍 <strong>Willows Academy</strong></li>
+        <li>🧑‍🎨 <strong>Girls & Boys</strong> • Ages 4-13 • All levels welcome</li>
         <li>🗓️ July 20-24 & July 27-31 • 9:30–3:00 PM</li>
-        <li>👧 Ages 4–14 • All levels welcome</li>
         <li>💵 $425 / week • $800 / two weeks</li>
-        <li>🥞 Friday crepe celebration</li>
+        <li>📍 Held at Willows Academy</li>
       </ul>
     </div>
   </div>
@@ -68,8 +67,9 @@
 
 <!-- WEEKS / PRICING -->
 <section id="weeks" class="section">
-  <h2 class="section-title">Choose Your Week</h2>
-  <p class="section-subtitle">Limited enrollment — first 30 campers.</p>
+  <h2 class="section-title">Choose Your Week
+    <span class="subtitle-english"> Limited enrollment — first 50 campers.</span>
+  </h2>
 
   <div class="pricing-grid">
 
@@ -107,9 +107,9 @@
 
 <!-- WEEKLY SCHEDULE -->
 <section id="everyday" class="section">
-  <h2 class="section-title">Weekly Schedule</h2>
-  <p class="section-subtitle">A joyful routine built around language, play, and confidence.</p>
-
+  <h2 class="section-title">Weekly Schedule
+    <span class="subtitle-english"> A joyful routine built around language, play, and confidence.</span>
+  </h2>
   <div class="feature-card">
     <ul class="feature-list">
       <li><span class="dot"></span>Checking in at “customs” each morning</li>
@@ -127,8 +127,9 @@
 
 <!-- LUNCH & SNACK -->
 <section id="food" class="section">
-  <h2 class="section-title">Lunch & Snack</h2>
-  <p class="section-subtitle">Fuel for a full day of learning and play.</p>
+  <h2 class="section-title">Lunch & Snack
+    <span class="subtitle-english">Fuel for a full day of learning and play.</span>
+  </h2>
 
   <div class="feature-card">
     <div class="callouts">
@@ -154,8 +155,9 @@
 
 <!-- JOBS -->
 <section id="jobs" class="section">
-  <h2 class="section-title">Job Opportunities</h2>
-  <p class="section-subtitle">Join our team and help create a joyful, immersive French camp experience.</p>
+  <h2 class="section-title">Job Opportunities
+    <span class="subtitle-english">Join our team and help create a joyful, immersive French camp experience.</span>
+  </h2>
 
   <div class="jobs-grid">
     <article class="job-card">
@@ -189,7 +191,7 @@
 </section>
 
 <!-- REVIEWS -->
-<section id="reviews" class="reviews-section">
+<section id="reviews" class="section">
   <h2 class="reviews-title">Reviews</h2>
 
   <div class="reviews-grid">
@@ -221,8 +223,9 @@
 </section>
 
 <section id="gallery" class="section">
-  <h2>Gallery</h2>
-  <p class="lead">Venez vous amuser!</p>
+  <h2>Gallery
+    <span class="subtitle-english">Venez vous amuser!</span>
+  </h2>
   <div class="gallery-preview">
     <img src="/images/camp1.jpg" alt="Camp activity" />
     <img src="/images/camp5.jpg" alt="Camp activity" />

@@ -97,9 +97,9 @@
     <div class="field">
       <label class="label" for="campweek">Camp Option</label>
       <select id="campweek" class="input" bind:value={campweek} required>
-        <option value="week1">Week 1 (July 14–18)</option>
-        <option value="week2">Week 2 (July 21-25)</option>
-        <option value="both">Both Weeks (July 14–18 & July 21–25)</option>
+        <option value="week1">Week 1 (July 14–18) - $425</option>
+        <option value="week2">Week 2 (July 21-25) - $425</option>
+        <option value="both">Both Weeks (July 14–18 & July 21–25) - $800</option>
       </select>
     </div>
 
@@ -164,10 +164,9 @@
     {#if result}
       {#if result.ok && result.status === 'Registered'}
         <div class="notice success">
-          <div class="notice-title">✅ Registration Confirmed</div>
+          <div class="notice-title">✅ Registration almost complete!</div>
           <p class="notice-text">
-            You’re confirmed for <strong>{result.campLabel}</strong>. A confirmation email was sent to
-            <strong>{parentEmail}</strong>.
+            Please send $100 dollar deposit per registered week! <strong>{result.campLabel}</strong>. A reminder email was sent to <strong>{parentEmail}</strong>.
           </p>
 
           <div class="paybox">
@@ -184,7 +183,7 @@
         <div class="notice waitlist">
           <div class="notice-title">⏳ Waitlist</div>
           <p class="notice-text">
-            We’re currently at capacity (30 campers). You’ve been added to the waitlist for
+            We’re currently at capacity (50 campers). You’ve been added to the waitlist for
             <strong>{result.campLabel}</strong>. We’ll email you if a spot opens.
           </p>
         </div>

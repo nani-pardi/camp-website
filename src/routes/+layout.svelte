@@ -52,7 +52,7 @@
       <div>
         <div style="font-weight:800;margin-bottom:.5rem">Info</div>
         <ul style="color:#64748b;padding:0;list-style:none;display:grid;gap:.25rem">
-          <li>Willows Academy</li>
+          <li>Held at Willows Academy</li>
           <li>Two weeks in July • 9:30–3:00 PM</li>
           <li>Ages 4–13 • All levels</li>
         </ul>
