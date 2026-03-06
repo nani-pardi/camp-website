@@ -62,6 +62,7 @@
         <ul style="color:#64748b;padding:0;list-style:none;display:grid;gap:.25rem">
           <li>Email: alouettecamp@gmail.com</li>
           <li>Phone: (773) 627-6449</li>
+          <li>Instagram: @alouettefc</li>
         </ul>
       </div>
     </div>
