@@ -97,9 +97,9 @@
     <div class="field">
       <label class="label" for="campweek">Camp Option</label>
       <select id="campweek" class="input" bind:value={campweek} required>
-        <option value="week1">Week 1 (July 14–18) - $425</option>
-        <option value="week2">Week 2 (July 21-25) - $425</option>
-        <option value="both">Both Weeks (July 14–18 & July 21–25) - $800</option>
+        <option value="week1">Week 1 (July 20–24) - $425</option>
+        <option value="week2">Week 2 (July 27-31) - $425</option>
+        <option value="both">Both Weeks (July 20–24 & July 27–31) - $800</option>
       </select>
     </div>
 
