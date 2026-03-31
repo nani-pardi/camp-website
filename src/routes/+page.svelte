@@ -76,7 +76,7 @@
     <!-- Week 1 -->
     <div class="pricing-card">
       <div class="pricing-badge">Week 1</div>
-      <h3 class="pricing-title">July 14–18</h3>
+      <h3 class="pricing-title">July 20–24</h3>
       <p class="pricing-time">9:30 AM – 3:00 PM</p>
       <div class="pricing-price">$425</div>
     </div>
@@ -84,7 +84,7 @@
     <!-- Week 2 -->
     <div class="pricing-card">
       <div class="pricing-badge">Week 2</div>
-      <h3 class="pricing-title">July 21–25</h3>
+      <h3 class="pricing-title">July 27–31</h3>
       <p class="pricing-time">9:30 AM – 3:00 PM</p>
       <div class="pricing-price">$425</div>
     </div>
@@ -92,7 +92,7 @@
     <!-- Both Weeks -->
     <div class="pricing-card">
       <div class="pricing-badge">Both Weeks</div>
-      <h3 class="pricing-title">July 14–18 & July 21–25</h3>
+      <h3 class="pricing-title">July 20–24 & July 27–31</h3>
       <p class="pricing-time">9:30 AM – 3:00 PM</p>
       <div class="pricing-price">$800</div>
     </div>
