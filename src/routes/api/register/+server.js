@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit'
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbz15sXGrfm6A5ornjEVcK5_W5PTDnKqHchvs4cPhgBWAH9mPDquxWmC4FCV29up1i7V/exec'
+  'https://script.google.com/macros/s/AKfycbx3NrCbsPR8IV1G4aIKP9Wy-ZEdNgNLV2vEvjJrM-jwIdqmtf1C2CDRY6woVan2n7URJg/exec'
 // This endpoint receives JSON from your Svelte form,
 // forwards it to Apps Script as form-encoded,
 // then returns Apps Script’s JSON back to the browser.

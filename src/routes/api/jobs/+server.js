@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit'
 
 const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbwt22D2PY4OVqNsS0tROLJ6K4b36k6ZRD82pjIONroXo5dnWimFssRbT8NLRPmxAaMC/exec'
+  'https://script.google.com/macros/s/AKfycbwXp_i9Tzwrb_FWJi6GetPNaqdNDhzTIc_GcSaoF6-BfZzD84IyHUb2erplXawZoj4e/exec'
 
 // Receives JSON -> forwards as x-www-form-urlencoded -> returns Apps Script JSON
 export async function POST({ request }) {
